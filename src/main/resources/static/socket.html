@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>欢迎来到HTML页面。</h1>
+</body>
+<script type="text/javascript">
+    var wes;
+    window.onload=function(){
+       wes = new WebSocket("ws://localhost:8080/websocket/20")
+
+       wes.onopen = function () {
+           console.log("建立连接。")
+       }
+       wes.onmessage = function (msg) {
+           console.log("收到的信息："+msg.data)
+       }
+       wes.onclose = function () {
+            console.log("关闭连接")
+       }
+    }
+    window.unload = function(){
+        wes.close();
+    }
+</script>
+</html>
